@@ -93,7 +93,9 @@ Install the required packages using pip:
 
 pip install torch transformers shap lifelines matplotlib pandas
 
-Key Takeaways
+
+** Key Takeaways
+
 BERTSurv adapts transformer models (like BERT) for time-to-event (survival) analysis directly from free-text data.
 The notebook:
 Simulates synthetic clinical data
