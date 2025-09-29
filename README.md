@@ -76,4 +76,49 @@ class BERTSurv(nn.Module):
         cls_emb = outputs.last_hidden_state[:, 0, :]  # CLS token embedding
         risk = self.linear(cls_emb)
         return risk.squeeze(-1)
-```python
+```
+
+Explainability with SHAP
+token	impact	abs_impact
+smoker	+0.12	0.12
+COPD	+0.10	0.10
+sedentary	+0.08	0.08
+female	-0.07	0.07
+active	-0.05	0.05
+
+Kaplan–Meier Curves by Group
+
+We visualize Kaplan–Meier survival curves stratified by patient group labels (e.g., "Smoker" vs "Non-Smoker"):
+groups = ["Smoker", "Non-Smoker", "Smoker"]
+plot_group_km(patients, groups, tokenizer=tokenizer)
+
+Dependencies
+
+Install the required packages using pip:
+
+pip install torch transformers shap lifelines matplotlib pandas
+
+Key Takeaways
+
+BERTSurv adapts transformer models (like BERT) for time-to-event (survival) analysis directly from free-text data.
+
+The notebook:
+
+Simulates synthetic clinical data
+Trains a survival model using BERTSurv
+Provides risk scoring per patient
+Visualizes SHAP-based explanations
+Plots Kaplan–Meier survival curves
+The approach is designed to be extensible to real-world EHR notes, where explainability and hazard modeling are crucial.
+
+References
+
+Zhao, J., Li, R., Lu, W., & Song, Y. (2021).
+BERTSurv: A Transformer Model for Time-to-Event Analysis.
+arXiv:2103.10928
+Lifelines Documentation
+https://lifelines.readthedocs.io/
+SHAP for Explainability
+https://shap.readthedocs.io/
+HuggingFace Transformers
+https://huggingface.co/transformers/
