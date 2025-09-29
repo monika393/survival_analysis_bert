@@ -78,47 +78,51 @@ class BERTSurv(nn.Module):
         return risk.squeeze(-1)
 ```
 
-Explainability with SHAP
-token	impact	abs_impact
-smoker	+0.12	0.12
-COPD	+0.10	0.10
-sedentary	+0.08	0.08
-female	-0.07	0.07
-active	-0.05	0.05
+## 🔍 Explainability with SHAP
 
-Kaplan–Meier Curves by Group
+| Token     | Impact | Absolute Impact |
+|-----------|--------|-----------------|
+| smoker    | +0.12  | 0.12            |
+| COPD      | +0.10  | 0.10            |
+| sedentary | +0.08  | 0.08            |
+| female    | -0.07  | 0.07            |
+| active    | -0.05  | 0.05            |
 
-We visualize Kaplan–Meier survival curves stratified by patient group labels (e.g., "Smoker" vs "Non-Smoker"):
+---
+
+## 📊 Kaplan–Meier Curves by Group
+
+We visualize **Kaplan–Meier survival curves** stratified by patient group labels (e.g., `"Smoker"` vs `"Non-Smoker"`):
+
+```python
 groups = ["Smoker", "Non-Smoker", "Smoker"]
 plot_group_km(patients, groups, tokenizer=tokenizer)
+```
 
-Dependencies
+## 🔑 Key Takeaways
 
-Install the required packages using pip:
-
-pip install torch transformers shap lifelines matplotlib pandas
-
-Key Takeaways
-
-BERTSurv adapts transformer models (like BERT) for time-to-event (survival) analysis directly from free-text data.
+- **BERTSurv** adapts transformer models (like BERT) for **time-to-event (survival) analysis** directly from **free-text data**.
 
 The notebook:
+- Simulates synthetic clinical data  
+- Trains a survival model using BERTSurv  
+- Provides risk scoring per patient  
+- Visualizes SHAP-based explanations  
+- Plots Kaplan–Meier survival curves  
 
-Simulates synthetic clinical data
-Trains a survival model using BERTSurv
-Provides risk scoring per patient
-Visualizes SHAP-based explanations
-Plots Kaplan–Meier survival curves
-The approach is designed to be extensible to real-world EHR notes, where explainability and hazard modeling are crucial.
+The approach is designed to be **extensible to real-world EHR notes**, where **explainability** and **hazard modeling** are crucial.
 
-References
+## 📚 References
 
-Zhao, J., Li, R., Lu, W., & Song, Y. (2021).
-BERTSurv: A Transformer Model for Time-to-Event Analysis.
-arXiv:2103.10928
-Lifelines Documentation
-https://lifelines.readthedocs.io/
-SHAP for Explainability
-https://shap.readthedocs.io/
-HuggingFace Transformers
-https://huggingface.co/transformers/
+- Zhao, J., Li, R., Lu, W., & Song, Y. (2021).  
+  *BERTSurv: A Transformer Model for Time-to-Event Analysis*.  
+  [arXiv:2103.10928](https://arxiv.org/abs/2103.10928)
+
+- **Lifelines Documentation**  
+  [https://lifelines.readthedocs.io/](https://lifelines.readthedocs.io/)
+
+- **SHAP for Explainability**  
+  [https://shap.readthedocs.io/](https://shap.readthedocs.io/)
+
+- **HuggingFace Transformers**  
+  [https://huggingface.co/transformers/](https://huggingface.co/transformers/)
